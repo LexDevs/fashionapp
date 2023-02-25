@@ -1,14 +1,6 @@
-# fashionapp
-
-A new Flutter project.
-
-## Getting Started
+## fashionapp
 
 https://user-images.githubusercontent.com/105126861/221324295-55ec805f-a862-4177-ab06-553171364c29.mp4
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
