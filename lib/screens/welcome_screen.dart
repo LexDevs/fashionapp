@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors, unnecessary_import, avoid_print, duplicate_ignore
+// ignore_for_file: prefer_final_fields, prefer_const_constructors, unnecessary_import, avoid_print, duplicate_ignore, prefer_const_literals_to_create_immutables
 
 import 'package:fashionapp/screens/checkout_screen.dart';
 import 'package:fashionapp/screens/favorite_screen.dart';
@@ -49,22 +49,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
       body: _screens[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // ignore: prefer_const_literals_to_create_immutables
+        currentIndex: selectedIndex,
+        selectedItemColor: Colors.cyan,
         onTap: updateMenuIndex,
-        // ignore: prefer_const_literals_to_create_immutables
         items: [
-          // ignore: prefer_const_constructors
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          // ignore: prefer_const_constructors
           BottomNavigationBarItem(
-              // ignore: prefer_const_constructors
-              icon: Icon(Icons.favorite_border),
-              label: 'Favorite'),
-          // ignore: prefer_const_constructors
+              icon: Icon(Icons.favorite_border), label: 'Favorite'),
           BottomNavigationBarItem(
-              // ignore: prefer_const_constructors
-              icon: Icon(Icons.check_circle_outline),
-              label: 'Checkout'),
+              icon: Icon(Icons.check_circle_outline), label: 'Checkout'),
         ],
       ),
     );

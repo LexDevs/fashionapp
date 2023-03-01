@@ -13,6 +13,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<Fashion> fashionList = Fashion.fashionList;
 
+  bool toggleIsFavorite(bool isFavorite) {
+    return !isFavorite;
+  }
+
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
@@ -32,21 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 15,
           ),
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(25.0),
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/off.png',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // SingleChildScrollView(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: <Widget>[
+          //       ClipRRect(
+          //         borderRadius: BorderRadius.circular(25.0),
+          //         child: const Image(
+          //           image: AssetImage(
+          //             'assets/off.png',
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           SizedBox(
             height: 10,
           ),
@@ -102,45 +106,59 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     },
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 12.0),
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12.0),
-                            child: Image.asset(fashionList[index].url),
-                          ),
-                          Positioned(
-                            bottom: 25,
-                            left: 15,
-                            child: Text(
-                              fashionList[index].name,
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w200,
-                                color: Colors.white,
+                    child: Hero(
+                      tag: fashionList[index].id,
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 12.0),
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12.0),
+                              child: Image.asset(fashionList[index].url),
+                            ),
+                            Positioned(
+                              bottom: 40,
+                              left: 20,
+                              child: Text(
+                                fashionList[index].name,
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w200,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            left: 15,
-                            child: Text(
-                              fashionList[index].location,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                            Positioned(
+                              bottom: 20,
+                              left: 20,
+                              child: Text(
+                                fashionList[index].location,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            right: 15,
-                            child: Icon(Icons.favorite_border,
-                                color: Colors.white),
-                          ),
-                        ],
+                            Positioned(
+                              top: 20,
+                              right: 20,
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    bool isFavorite = toggleIsFavorite(
+                                        fashionList[index].isFavorite);
+                                    fashionList[index].isFavorite = isFavorite;
+                                  });
+                                },
+                                icon: fashionList[index].isFavorite == true
+                                    ? Icon(Icons.favorite, color: Colors.red)
+                                    : Icon(Icons.favorite_border,
+                                        color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

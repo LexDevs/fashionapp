@@ -26,19 +26,22 @@ class _DetailsScreenState extends State<DetailsScreen> {
       ),
       body: Stack(
         children: [
-          Image.asset(
-            fashionList[widget.fashionId].url,
-            fit: BoxFit.cover,
-            height: 500,
-            width: 500,
-            alignment: Alignment.center,
+          Hero(
+            tag: fashionList[widget.fashionId].id,
+            child: Image.asset(
+              fashionList[widget.fashionId].url,
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+              alignment: Alignment.center,
+            ),
           ),
           Positioned(
             child: Container(
-              height: 500,
-              width: 500,
+              height: double.infinity,
+              width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.15),
+                color: Colors.black.withOpacity(.20),
               ),
             ),
           ),
@@ -59,20 +62,103 @@ class _DetailsScreenState extends State<DetailsScreen> {
             child: IconButton(
               onPressed: null,
               icon: Icon(
-                Icons.favorite_border,
+                Icons.star_border_outlined,
                 color: Colors.white,
               ),
             ),
           ),
           Positioned(
-            top: 100,
+            top: 390,
             left: 30,
             child: Column(
               children: [
                 Icon(
-                  Icons.comment_bank_rounded,
-                )
+                  Icons.chat_bubble_outline_sharp,
+                  color: Colors.white,
+                ),
+                Text(
+                  '40',
+                  style: TextStyle(
+                    fontSize: 16.3,
+                    color: Colors.white,
+                  ),
+                ),
               ],
+            ),
+          ),
+          Positioned(
+            top: 450,
+            left: 30,
+            child: Column(
+              children: [
+                Icon(
+                  Icons.favorite_border_sharp,
+                  color: Colors.white,
+                ),
+                Text(
+                  '220',
+                  style: TextStyle(
+                    fontSize: 16.3,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 510,
+            left: 30,
+            child: Column(
+              children: [
+                Icon(
+                  Icons.share_sharp,
+                  color: Colors.white,
+                ),
+                Text(
+                  '340',
+                  style: TextStyle(
+                    fontSize: 16.3,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 25,
+            right: 30,
+            left: 30,
+            child: Container(
+              width: 200,
+              height: 150,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(.1),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      fashionList[widget.fashionId].name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      fashionList[widget.fashionId].description,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        height: 1.5,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
